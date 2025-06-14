@@ -1,7 +1,9 @@
 <?php
-require "src/db-conection.php";
-require "src/Model/Produtos.php";
-require "src/Repository/ProductsRepository.php";
+require "../src/db-conection.php";
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Src\Repository\ProductsRepository;
+
 $productsRepository = new ProductsRepository($pdo);
 $product = $productsRepository->mostraAbaProduto($_GET['id_prod']);
 
@@ -15,7 +17,7 @@ $product = $productsRepository->mostraAbaProduto($_GET['id_prod']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Produto | AgroPet</title>
-    <link href="src/output.css" rel="stylesheet">
+    <link href="../src/output.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 

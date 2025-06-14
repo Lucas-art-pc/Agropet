@@ -1,5 +1,12 @@
 {
     "require": {
         "composer/composer": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/",
+            "Admin\\": "admin/"
+        }
+
     }
 }

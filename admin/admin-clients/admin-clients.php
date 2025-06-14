@@ -1,7 +1,8 @@
 <?php
-require "../src/db-conection.php";
-require "../src/Model/Clientes.php";
-require "../src/Repository/ClientsRepository.php";
+require "../../src/db-conection.php";
+require "../../vendor/autoload.php";
+
+use Src\Repository\ClientsRepository;
 
 $clientRepository = new ClientsRepository($pdo);
 $allClient = $clientRepository->mostrarTodos();
@@ -14,7 +15,7 @@ $allClient = $clientRepository->mostrarTodos();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Clientes | AgroPet</title>
-    <link href="../src/output.css" rel="stylesheet">
+    <link href="../../src/output.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 
@@ -25,9 +26,9 @@ $allClient = $clientRepository->mostrarTodos();
         </div>
         <nav class="flex-1 p-4">
             <a href="#" class="block px-4 py-2 rounded hover:bg-green-700">Dashboard</a>
-            <a href="admin-products.php" class="block px-4 py-2 rounded hover:bg-green-700">Produtos</a>
+            <a href="../admin-products/admin-products.php" class="block px-4 py-2 rounded hover:bg-green-700">Produtos</a>
             <a href="#" class="block px-4 py-2 rounded hover:bg-green-700">Pedidos</a>
-            <a href="admin-clients.php" class="block px-4 py-2 rounded hover:bg-green-700 font-semibold bg-green-700">Clientes</a>
+            <a href="../admin-clients/admin-clients.php" class="block px-4 py-2 rounded hover:bg-green-700 font-semibold bg-green-700">Clientes</a>
             <a href="admin-solicits.php" class="block px-4 py-2 rounded hover:bg-green-700">Solicitações</a>
         </nav>
         <div class="p-4 border-t border-green-700">
@@ -67,8 +68,8 @@ $allClient = $clientRepository->mostrarTodos();
                             <td class="px-6 py-4"><?=$cliente->getTelefone()?></td>
                             <td class="px-6 py-4"><?=$cliente->getEndereco()?></td>
                             <td class="px-6 py-4 text-center space-x-2 flex">
-                                <a class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">Editar</a>
-                                <form method="post" action="services/delete-client.php" >
+                                <a href="admin-edit-clients.php?id_cli=<?=$cliente->getId()?>" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">Editar</a>
+                                <form method="post" action="../services/delete-client.php" >
                                     <input type="hidden" name="id_cli" value="<?=$cliente->getId()?>" >
                                     <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded" >Excluir</button>
                                 </form>

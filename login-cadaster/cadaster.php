@@ -1,4 +1,25 @@
+<?php
+require "../src/db-conection.php";
+require "../vendor/autoload.php";
 
+use Src\Model\Clientes;
+use Src\Repository\ClientsRepository;
+
+if(isset($_POST['cadastro'])){
+
+    $clientClass = new Clientes(null,
+        $_POST['nome_cli'],
+        $_POST['cpf_cli'],
+        $_POST['telefone_cli'],
+        $_POST['email_cli'],
+            $_POST['endereco_cli'],
+            $_POST['senha_cli']
+        );
+    $client = new ClientsRepository($pdo);
+    $client->salvar($clientClass);
+    header('Location:cadaster.php');
+}
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,7 +50,7 @@
         <div class="bg-white rounded-lg shadow-md p-8 w-full max-w-md">
             <h2 class="text-3xl font-bold text-center text-green-700 mb-6">Cadastro de Cliente</h2>
 
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
 
                 <!-- Nome -->
                 <div class="mb-4">
@@ -90,25 +111,6 @@
         <p>&copy; 2025 AgroPet - Todos os direitos reservados.</p>
     </footer>
     <script src="JS/form/validity-form.js"></script>
-    <?php
-require "src/db-conection.php";
-require "src/Model/Clientes.php";
-require "src/Repository/ClientsRepository.php";
 
-if(isset($_POST['cadastro'])){
-
-    $clientClass = new Clientes(null,
-        $_POST['nome_cli'],
-        $_POST['cpf_cli'],
-        $_POST['telefone_cli'],
-        $_POST['email_cli'],
-            $_POST['endereco_cli'],
-            $_POST['senha_cli']
-        );
-    $client = new ClientsRepository($pdo);
-    $client->salvar($clientClass);
-    header('Location:cadaster.php');
-}
-?>
 </body>
 </html>

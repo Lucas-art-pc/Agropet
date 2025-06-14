@@ -1,29 +1,39 @@
 <?php
 require "../../src/db-conection.php";
-require "../../src/Model/Produtos.php";
-require "../../src/Repository/ProductsRepository.php";
+require "../../vendor/autoload.php";
+
+
+use Src\Model\Produtos;
+use Src\Repository\ProductsRepository;
+
+
 
 $repositoryEdit = new ProductsRepository($pdo);
-if(isset($_POST['atualizar'])){
 
-    $products = new Produtos(null, 
-    $_POST['nome_prod'], 
-    $_POST['descricao_prod'], 
-    $_POST['preco_prod'], 
-    $_POST['quantidade_prod'],
-     $_POST['categoria_prod'], 
-    $_FILES['imagem_prod']['name']  
-);
+if (isset($_POST['atualizar'])) {
+
     $nomeImagem = uniqid() . '_' . $_FILES['imagem_prod']['name'];
-        $caminho = '../img/' . $nomeImagem;
+    $caminho = '../img/' . $nomeImagem;
+    move_uploaded_file($_FILES['imagem_prod']['tmp_name'], $caminho);
 
-        move_uploaded_file($_FILES['imagem_prod']['tmp_name'], $caminho);
+    $products = new Produtos(
+        $_POST['id_prod'],
+        $_POST['nome_prod'], 
+        $_POST['descricao_prod'], 
+        $_POST['preco_prod'], 
+        $_POST['quantidade_prod'],
+        $_POST['categoria_prod'], 
+        $nomeImagem
+    );
 
     $repositoryEdit->editaProdutos($products);
     header('Location: admin-products.php');
-} else{
+    exit;
+
+} else {
     $product = $repositoryEdit->mostraAbaProduto($_GET['id_prod']);
 }
+
 
 ?>
 
@@ -33,7 +43,7 @@ if(isset($_POST['atualizar'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Produto | AgroPet</title>
-    <link href="/src/output.css" rel="stylesheet">
+    <link href="../../src/output.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 
@@ -122,7 +132,7 @@ if(isset($_POST['atualizar'])){
                         hover:file:bg-green-800"/>
                 </div>
 
-                <!-- Botões -->
+
                 <div class="flex justify-between">
                     <button type="submit" name="atualizar" value="atualizar"
                         class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded w-full mr-2">
@@ -136,8 +146,6 @@ if(isset($_POST['atualizar'])){
             </form>
         </div>
     </main>
-
-    <!-- Rodapé -->
     <footer class="bg-green-700 text-white text-center p-4">
         <p>&copy; 2025 AgroPet - Todos os direitos reservados.</p>
     </footer>

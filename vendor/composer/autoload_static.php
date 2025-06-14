@@ -35,6 +35,7 @@ class ComposerStaticInit8162b5eba91a0fa08f928178f836d129
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Filesystem\\' => 29,
             'Symfony\\Component\\Console\\' => 26,
+            'Src\\' => 4,
             'Seld\\Signal\\' => 12,
             'Seld\\PharUtils\\' => 15,
             'Seld\\JsonLint\\' => 14,
@@ -66,6 +67,10 @@ class ComposerStaticInit8162b5eba91a0fa08f928178f836d129
             'Composer\\ClassMapGenerator\\' => 27,
             'Composer\\CaBundle\\' => 18,
             'Composer\\' => 9,
+        ),
+        'A' => 
+        array (
+            'Admin\\' => 6,
         ),
     );
 
@@ -121,6 +126,10 @@ class ComposerStaticInit8162b5eba91a0fa08f928178f836d129
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Src\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Seld\\Signal\\' => 
         array (
@@ -185,6 +194,10 @@ class ComposerStaticInit8162b5eba91a0fa08f928178f836d129
         'Composer\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/composer/src/Composer',
+        ),
+        'Admin\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/admin',
         ),
     );
 

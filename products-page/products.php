@@ -1,12 +1,12 @@
 <?php
-require "src/db-conection.php";
-require "src/Model/Produtos.php";
-require "src/Repository/ProductsRepository.php";
 
+require_once "../src/db-conection.php";
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Src\Repository\ProductsRepository;
 
 $productsRepository = new ProductsRepository($pdo);
 $allProductsRepository = $productsRepository->mostrarTodos();
-
 
 ?>
 

@@ -1,7 +1,9 @@
 <?php
 require "../../src/db-conection.php";
-require "../../src/Model/Produtos.php";
-require "../../src/Repository/ProductsRepository.php";
+require "../../vendor/autoload.php";
+
+use Src\Model\Produtos;
+use Src\Repository\ProductsRepository;
 
 if(isset($_POST['cadastra'])){
 

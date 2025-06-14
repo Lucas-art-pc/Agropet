@@ -1,5 +1,7 @@
 <?php 
 
+namespace Src\Model;
+
 class Produtos{
     private ?int $id;
     private string $nome;
@@ -52,6 +54,10 @@ class Produtos{
     }
 
     public function getPrecoFormatado(){
-        return "R$" . number_format($this->preco, 2)
-;    }
+        return "R$" . number_format($this->preco, 2);
+    }
+
+    public function setImagem($imagem){
+        $this->imagem = $imagem;
+    }
 }

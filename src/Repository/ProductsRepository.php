@@ -1,5 +1,9 @@
 <?php
 
+namespace Src\Repository;
+
+use Src\Model\Produtos;
+use PDO;
 class ProductsRepository{
     private PDO $pdo;
 
@@ -77,6 +81,13 @@ class ProductsRepository{
         $statement->bindValue(5, $product->getCategoria());
         $statement->bindValue(6, $product->getImagem());
         $statement->bindValue(7, $product->getId());
+        $statement->execute();
+    }
+
+    public function maisCaros(){
+        $sql = "SELECT * FROM produtos ORDER BY preco DESC;";
+        $statement = $this->pdo->prepare($sql);
+        $statement->fetchAll(PDO::FETCH_ASSOC);
         $statement->execute();
     }
 }

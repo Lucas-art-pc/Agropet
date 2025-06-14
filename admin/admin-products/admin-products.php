@@ -1,8 +1,9 @@
 <?php
 
 require "../../src/db-conection.php";
-require "../../src/Model/Produtos.php";
-require "../../src/Repository/ProductsRepository.php";
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+use Src\Repository\ProductsRepository;
 
 
 $productsRepository = new ProductsRepository($pdo);
@@ -26,10 +27,10 @@ $allProductsRepository = $productsRepository->mostrarTodos();
         </div>
         <nav class="flex-1 p-4">
             <a href="#" class="block px-4 py-2 rounded hover:bg-green-700">Dashboard</a>
-            <a href="admin-products.php" class="block px-4 py-2 rounded hover:bg-green-700 font-semibold bg-green-700">Produtos</a>
+            <a href="../admin-products/admin-products.php" class="block px-4 py-2 rounded hover:bg-green-700 font-semibold bg-green-700">Produtos</a>
             <a href="#" class="block px-4 py-2 rounded hover:bg-green-700">Pedidos</a>
-            <a href="admin-clients.php" class="block px-4 py-2 rounded hover:bg-green-700">Clientes</a>
-            <a href="admin-solicits.php" class="block px-4 py-2 rounded hover:bg-green-700">Solicitações</a>
+            <a href="../admin-clients/admin-clients.php" class="block px-4 py-2 rounded hover:bg-green-700">Clientes</a>
+            <a href="../admin-solicit/admin-solicits.php" class="block px-4 py-2 rounded hover:bg-green-700">Solicitações</a>
         </nav>
         <div class="p-4 border-t border-green-700">
             <button class="w-full bg-red-600 hover:bg-red-700 px-4 py-2 rounded">Sair</button>
@@ -68,7 +69,7 @@ $allProductsRepository = $productsRepository->mostrarTodos();
                             <td class="px-6 py-4 "><?=$product->getPrecoFormatado()?></td>
                             <td class="px-6 py-4 text-center space-x-2 flex">
                                 <a href="admin-edit-products.php?id_prod=<?=$product->getId()?>" class="bg-yellow-500 hover:bg-yellow-600 text-white px-2 py-1 rounded">Editar</a>
-                                <form action="services/delete-product.php" method="POST">
+                                <form action="../services/delete-product.php" method="POST">
                                     <input type="hidden" name="id_prod" value="<?= $product->getId()?>">
                                     <button class="bg-red-600 hover:bg-red-700 text-white px-2 py-1  rounded" >Excluir</button>
                                 </form>

@@ -1,5 +1,6 @@
 <?php
 
+namespace Src\Model;
 class Clientes{
     private ?int $id;
     private string $nome;
